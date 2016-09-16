@@ -4,10 +4,6 @@ var User        = require('./controllers/user.server.controller'),
     verifyToken = require('../config/tokenMiddleware');
 
 module.exports = function(app) {
-
-  app.get('/api', verifyToken,  User.welcome);
-
-  app.post('/api/login',    User.authenticateUserByEmail);
-  app.post('/api/register', User.registerUser);
-
+  app.post('/api/cart',    User.addToCart);
+  app.get('/api/checkout', verifyToken, User.accessCheckOut);
 };

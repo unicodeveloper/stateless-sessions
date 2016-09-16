@@ -57,5 +57,5 @@ app.get('*', function(req, res) {
  * Start Express server.
  */
 app.listen( port, function(){
-  console.log("Mean Map Server Listening on port ", port );
+  console.log("JWT Handbook Server Listening on port ", port );
 });

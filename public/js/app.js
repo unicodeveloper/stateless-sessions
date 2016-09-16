@@ -1,21 +1,14 @@
 var app = angular
-            .module('meanmap', [
+            .module('stateless-sessions', [
               'ngCookies',
               'ngRoute',
               'ngStorage',
               'ngMessages',
-              'angularMoment',
               'angular-loading-bar',
-              'ngFileUpload',
-              'leaflet-directive',
               'ui.bootstrap',
               'appRoutes',
               'ngSanitize',
-              'toastr',
-              'geocoder',
-              'ngLodash',
-              'hc.marked',
-              'angularUtils.directives.dirDisqus'])
+              'toastr'])
   .factory('authInterceptor', function($q, $location, $window, $localStorage){
     return {
       request: function(config){
@@ -34,14 +27,12 @@ var app = angular
         }
         return $q.reject(response);
       }
-     };
+   };
   })
   .config(['cfpLoadingBarProvider','$httpProvider', function(cfpLoadingBarProvider, $httpProvider){
-
     $httpProvider.interceptors.push('authInterceptor');
     cfpLoadingBarProvider.includeSpinner   = false;
     cfpLoadingBarProvider.includeBar       = true;
-
   }])
   .run(['$rootScope', '$location', function($rootScope, $location) {
     $rootScope.$on( "$routeChangeStart", function(event, next, current) {
